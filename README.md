@@ -19,6 +19,10 @@ BatteryPilot is a tiny Windows tray app that applies safe, verified laptop batte
 
 ## Install
 
+### Direct download
+
+[Download BatteryPilot for Windows](https://github.com/mrwzi/BatteryPilot/raw/main/downloads/BatteryPilot-win-x64.zip) and verify it with the adjacent SHA-256 checksum file.
+
 Download `BatteryPilot-win-x64.zip` from **Releases**, extract it, and double-click **INSTALL BatteryPilot.exe**. The installer:
 
 - requests administrator permission;
