@@ -1,0 +1,44 @@
+name: Bug report
+description: Report incorrect behavior on a Windows laptop
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Remove serial numbers and other private information before posting diagnostics.
+  - type: input
+    id: version
+    attributes:
+      label: BatteryPilot version
+    validations:
+      required: true
+  - type: input
+    id: laptop
+    attributes:
+      label: Manufacturer and model
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and capability report
+    validations:
+      required: true
+  - type: checkboxes
+    id: external
+    attributes:
+      label: Display topology
+      options:
+        - label: An external display was connected

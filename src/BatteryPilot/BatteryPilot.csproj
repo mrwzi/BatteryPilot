@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>BatteryPilot.manifest</ApplicationManifest>
+    <ApplicationIcon>BatteryPilot.ico</ApplicationIcon>
+    <AssemblyName>BatteryPilot</AssemblyName>
+    <RootNamespace>BatteryPilot</RootNamespace>
+    <Version>0.1.0</Version>
+    <Company>BatteryPilot contributors</Company>
+    <Product>BatteryPilot</Product>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup><Reference Include="System.Management" /></ItemGroup>
+</Project>

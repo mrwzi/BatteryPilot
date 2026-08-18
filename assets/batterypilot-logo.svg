@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="BatteryPilot logo">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#20e7ff"/><stop offset="1" stop-color="#1664ff"/></linearGradient>
+    <linearGradient id="charge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#71f04a"/><stop offset="1" stop-color="#0ac9a0"/></linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="236" fill="#071b43" stroke="url(#ring)" stroke-width="20"/>
+  <path d="M223 87h66a18 18 0 0 1 18 18v23h-102v-23a18 18 0 0 1 18-18z" fill="#20bce9" stroke="#d9fbff" stroke-width="8"/>
+  <rect x="142" y="121" width="228" height="310" rx="44" fill="#09234d" stroke="#a8efff" stroke-width="16"/>
+  <rect x="171" y="157" width="170" height="238" rx="24" fill="url(#charge)"/>
+  <circle cx="256" cy="278" r="86" fill="#071b43" stroke="#20e7ff" stroke-width="13"/>
+  <path d="M206 337l37-84 79-52-38 83z" fill="#20e7ff" stroke="#021636" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M206 337l37-84 41 31z" fill="#f4fbff"/>
+  <circle cx="263" cy="270" r="17" fill="#1664ff" stroke="#b9f7ff" stroke-width="7"/>
+  <path d="M256 17l14 42h-28zM495 256l-42 14v-28zM256 495l-14-42h28zM17 256l42-14v28z" fill="#20e7ff"/>
+</svg>

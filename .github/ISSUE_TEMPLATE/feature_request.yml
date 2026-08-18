@@ -1,0 +1,19 @@
+name: Feature request
+description: Suggest a Windows capability or OEM provider
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: input
+    id: manufacturer
+    attributes:
+      label: Manufacturer and model (if hardware-specific)
+  - type: textarea
+    id: request
+    attributes:
+      label: Requested capability
+    validations:
+      required: true
+  - type: textarea
+    id: safe_api
+    attributes:
+      label: Documented safe API or vendor control, if known
