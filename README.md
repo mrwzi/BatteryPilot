@@ -21,18 +21,14 @@ BatteryPilot is a tiny Windows tray app that applies safe, verified laptop batte
 
 ### Direct download
 
-[Download BatteryPilot for Windows](https://github.com/mrwzi/BatteryPilot/raw/main/downloads/BatteryPilot-win-x64.zip) and verify it with the adjacent SHA-256 checksum file.
-
-Download `BatteryPilot-win-x64.zip` from **Releases**, extract it, and double-click **INSTALL BatteryPilot.exe**. The installer:
+[Download BatteryPilot-Setup.exe](https://github.com/mrwzi/BatteryPilot/raw/main/downloads/BatteryPilot-Setup.exe), then double-click it. No ZIP extraction or companion files are required. The standalone installer:
 
 - requests administrator permission;
 - installs under `C:\Program Files\BatteryPilot`;
 - creates a Desktop shortcut;
 - registers BatteryPilot in Windows Settings → Apps.
 
-Portable use: run `BatteryPilot.exe` directly.
-
-Uninstall through Windows Settings → Apps or run `UNINSTALL BatteryPilot.exe`. No Windows restart is required to remove BatteryPilot.
+Uninstall through Windows Settings → Apps. No Windows restart is required to remove BatteryPilot.
 
 ## Support
 
@@ -54,12 +50,12 @@ Requirements: Windows and the .NET 8 SDK. Target computers require .NET Framewor
 
 ```powershell
 scripts\Prepare-Assets.ps1
-dotnet publish src\BatteryPilot\BatteryPilot.csproj -c Release -o artifacts\publish
-dotnet publish src\BatteryPilot.Installer\Installer.csproj -c Release -o artifacts\publish
-dotnet publish src\BatteryPilot.Uninstaller\Uninstaller.csproj -c Release -o artifacts\publish
+dotnet publish src\BatteryPilot\BatteryPilot.csproj -c Release -o artifacts\payload
+dotnet publish src\BatteryPilot.Uninstaller\Uninstaller.csproj -c Release -o artifacts\payload
+dotnet publish src\BatteryPilot.Installer\Installer.csproj -c Release -o artifacts\release /p:PayloadDirectory="$PWD\artifacts\payload"
 ```
 
-The app is approximately 126 KB. It does not bundle Electron, Node.js, Python, a browser, server, or .NET runtime.
+The installed app is approximately 126 KB, and the complete standalone installer is approximately 334 KB. It does not bundle Electron, Node.js, Python, a browser, server, or .NET runtime.
 
 ## Safety
 

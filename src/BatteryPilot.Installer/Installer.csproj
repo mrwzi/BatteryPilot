@@ -1,7 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <OutputType>WinExe</OutputType><TargetFramework>net48</TargetFramework><UseWindowsForms>true</UseWindowsForms>
-    <ApplicationManifest>Installer.manifest</ApplicationManifest><ApplicationIcon>..\BatteryPilot\BatteryPilot.ico</ApplicationIcon>
-    <AssemblyName>INSTALL BatteryPilot</AssemblyName><Version>0.1.0</Version><DebugType>none</DebugType><DebugSymbols>false</DebugSymbols>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationManifest>Installer.manifest</ApplicationManifest>
+    <ApplicationIcon>..\BatteryPilot\BatteryPilot.ico</ApplicationIcon>
+    <AssemblyName>BatteryPilot-Setup</AssemblyName>
+    <Version>0.1.0</Version>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PayloadDirectory Condition="'$(PayloadDirectory)'==''">..\..\artifacts\payload</PayloadDirectory>
   </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(PayloadDirectory)\BatteryPilot.exe" LogicalName="BatteryPilot.Payload.App" />
+    <EmbeddedResource Include="$(PayloadDirectory)\UNINSTALL BatteryPilot.exe" LogicalName="BatteryPilot.Payload.Uninstaller" />
+  </ItemGroup>
 </Project>

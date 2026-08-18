@@ -19,38 +19,27 @@ jobs:
       - name: Prepare application icon
         shell: pwsh
         run: scripts\Prepare-Assets.ps1
-      - name: Build lightweight app
-        run: dotnet publish src\BatteryPilot\BatteryPilot.csproj -c Release -o artifacts\publish
-      - name: Build installer
-        run: dotnet publish src\BatteryPilot.Installer\Installer.csproj -c Release -o artifacts\publish
-      - name: Build uninstaller
-        run: dotnet publish src\BatteryPilot.Uninstaller\Uninstaller.csproj -c Release -o artifacts\publish
-      - name: Add documentation and remove build-only configs
+      - name: Build application payload
+        run: dotnet publish src\BatteryPilot\BatteryPilot.csproj -c Release -o artifacts\payload
+      - name: Build uninstaller payload
+        run: dotnet publish src\BatteryPilot.Uninstaller\Uninstaller.csproj -c Release -o artifacts\payload
+      - name: Build standalone installer
+        run: dotnet publish src\BatteryPilot.Installer\Installer.csproj -c Release -o artifacts\release /p:PayloadDirectory="${{ github.workspace }}\artifacts\payload"
+      - name: Create checksum
         shell: pwsh
         run: |
-          Remove-Item artifacts\publish\*.config -Force -ErrorAction SilentlyContinue
-          Copy-Item README.md,LICENSE artifacts\publish
-          @'
-          INSTALL: double-click "INSTALL BatteryPilot.exe"
-          PORTABLE: double-click "BatteryPilot.exe"
-          UNINSTALL: use Windows Settings > Apps or "UNINSTALL BatteryPilot.exe"
-          Requires Windows 10/11 with .NET Framework 4.8.
-          '@ | Set-Content artifacts\publish\READ-ME-FIRST.txt
-      - name: Create release archive and checksum
-        shell: pwsh
-        run: |
-          Compress-Archive artifacts\publish\* artifacts\BatteryPilot-win-x64.zip
-          (Get-FileHash artifacts\BatteryPilot-win-x64.zip -Algorithm SHA256).Hash + '  BatteryPilot-win-x64.zip' | Set-Content artifacts\BatteryPilot-win-x64.sha256
+          Remove-Item artifacts\release\*.config -Force -ErrorAction SilentlyContinue
+          (Get-FileHash artifacts\release\BatteryPilot-Setup.exe -Algorithm SHA256).Hash + '  BatteryPilot-Setup.exe' | Set-Content artifacts\release\BatteryPilot-Setup.sha256
       - uses: actions/upload-artifact@v4
         with:
-          name: BatteryPilot-win-x64
+          name: BatteryPilot-Setup
           path: |
-            artifacts/BatteryPilot-win-x64.zip
-            artifacts/BatteryPilot-win-x64.sha256
+            artifacts/release/BatteryPilot-Setup.exe
+            artifacts/release/BatteryPilot-Setup.sha256
       - name: Publish GitHub release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            artifacts/BatteryPilot-win-x64.zip
-            artifacts/BatteryPilot-win-x64.sha256
+            artifacts/release/BatteryPilot-Setup.exe
+            artifacts/release/BatteryPilot-Setup.sha256
